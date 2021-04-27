@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class VehicleSorterTestWithSpy<T extends Vehicles> {
+public class VehicleSorterTest<T extends Vehicles> {
 
     @Test
     public void should_check_names_of_cars() {
