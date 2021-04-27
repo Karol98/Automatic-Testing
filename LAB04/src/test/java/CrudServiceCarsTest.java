@@ -4,6 +4,9 @@ import Service.CrudService;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 
@@ -11,12 +14,14 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class CrudServiceCarsTest {
 
+    @Mock
+    CrudService<Cars> carsCrudService;
 
     @Test
     void should_check_if_car_is_saved() {
-        CrudService<Cars> carsCrudService = mock(CrudService.class);
         Cars car = new Cars.Builder("Polonez").build();
         when(carsCrudService.saveVehicle(car)).thenReturn(car);
         Assert.assertThat(carsCrudService.saveVehicle(car), Matchers.is(car));
@@ -24,15 +29,12 @@ class CrudServiceCarsTest {
 
     @Test
     public void should_check_if_list_size_is_2() {
-        CrudService<Cars> carsCrudService = mock(CrudService.class);
         when(carsCrudService.getAll()).thenReturn(prepareMockData());
         Assert.assertThat(carsCrudService.getAll(), Matchers.hasSize(2));
     }
 
     @Test
     public void should_check_if_car_model_is_qashqai() {
-        //given.
-        CrudService<Cars> carsCrudService = mock(CrudService.class);
         when(carsCrudService.getVehicleById(0)).thenReturn(new Cars.Builder("Nissan").setModel("qashqai").build());
         Assert.assertEquals("qashqai", carsCrudService.getVehicleById(0).getModel());
     }
