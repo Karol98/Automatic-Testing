@@ -1,0 +1,4 @@
+language: java
+sudo: false
+before_install: cd LAB04
+script: mvn clean verify
