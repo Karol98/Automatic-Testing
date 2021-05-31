@@ -1,4 +1,10 @@
 language: java
-sudo: false
+
+jdk:
+  - openjdk15
+
+sudo: false # faster builds
+
 before_install: cd LAB04
-script: mvn clean verify
+
+script: "mvn cobertura:cobertura"
